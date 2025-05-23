@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Cylinder Calculator</title>
-<link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
 <style>
 
@@ -418,19 +417,24 @@ for (i = 1; i < r; i++) {
 }
 
 var num = [];
+var num2 = [];
 
 let text = "";
+let text2 = "";
 
 for (i = 0; i < a; i++) {
   var c1 = document.getElementsByTagName("td")[i].childNodes[0].nodeValue;
   if (c1 >= + sh){
   num[num.length] = c1;
+  } else if (c1 <= + sh){
+  num2[num2.length] = c1;
   }
 }
-  if (num === undefined || num.length == 0) {
+  if (num === undefined || num.length == 0 && num2 === undefined || num2.length == 0) {
   text = "Sorry no match!";
   } else 
   text = Math.min(...num);
+  text2 = Math.max(...num2);
 
   /*document.getElementById("demo").innerHTML = text;*/
   
@@ -441,7 +445,7 @@ for (i = 0; i < a; i++) {
     var ac = document.getElementsByClassName("across");
 
       for (y = 0; y < ac.length; y++) {
-      if (c1 == text && c3 >= + sw) {
+      if (c1 == text || c1 == text2 && c3 >= + sw || c3 <= + sw) {
        c2.style.display = "table-row";
        document.getElementsByTagName("td")[i].style.background = "yellow";   
        var acval = ac[y].childNodes[0].nodeValue;
